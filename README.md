@@ -60,7 +60,7 @@ Bytecode is computer object code that an interpreter converts into binary machin
 <details><summary>Output</summary>
 
 ```rb
-  2           0 LOAD_GLOBAL              0 (print)
+              0 LOAD_GLOBAL              0 (print)
               2 LOAD_CONST               1 ('Hello, world!')
               4 CALL_FUNCTION            1
               6 POP_TOP
@@ -73,3 +73,39 @@ Bytecode is computer object code that an interpreter converts into binary machin
 ## 4. Interpretation and execution by PVM
 Bytecode is interpreted and executed by PVM.
 If you want to know how interpretation performs, look through <a href="https://github.com/python/cpython/blob/main/Python/ceval.c">ceval.c</a>. During a Python function call, Python will call an evaluating C function to interpret that function's code, according to <a href="https://docs.python.org/ja/3.11/whatsnew/3.11.html#inlined-python-function-calls">the official documentation</a>.
+
+
+## Your Python code runs fast?
+Bytecode helps think about an effect on runtime. In this case, we compare two functions calculating seconds in a year. 
+```
+def yearByLocalName():
+    seconds_per_day = 86400
+    return seconds_per_day * 365
+
+def yearByGlobalName():
+    return 86400 * 365
+```
+
+```
+❯ python comparison.py
+```
+<details><summary>Output</summary>
+
+```rb
+              0 LOAD_CONST               1 (86400)
+              2 STORE_FAST               0 (seconds_per_day)
+              4 LOAD_FAST                0 (seconds_per_day)
+              6 LOAD_CONST               2 (365)
+              8 BINARY_MULTIPLY
+             10 RETURN_VALUE
+
+              elapsed time: 0.000005007 [sec]
+
+              0 LOAD_CONST               1 (31536000)
+              2 RETURN_VALUE            
+
+              elapsed time: 0.000002861 [sec]
+```
+</details>
+<br>
+As you can see, local names are faster than global ones. Wanna try your own code?
