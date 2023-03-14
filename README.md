@@ -76,14 +76,16 @@ If you want to know how interpretation performs, look through <a href="https://g
 
 
 ## Your Python code runs fast?
-Bytecode helps think about an effect on runtime. In this case, we compare two functions calculating seconds in a year. 
+Bytecode helps think about an effect on runtime. In this case, we compare two functions creating the list that contains multiples of 3 between 1 and 1000. 
 ```
-def yearByLocalName():
-    seconds_per_day = 86400
-    return seconds_per_day * 365
+def multiplier():
+    list = []
+    for i in range (1, 1000):
+        if i%3 == 0:
+            list.append (i)
 
-def yearByGlobalName():
-    return 86400 * 365
+def multiplierByListComprehension():
+    list = [i for i in range (1, 1000) if i%3 == 0]
 ```
 
 ```
@@ -92,20 +94,62 @@ def yearByGlobalName():
 <details><summary>Output</summary>
 
 ```rb
-              0 LOAD_CONST               1 (86400)
-              2 STORE_FAST               0 (seconds_per_day)
-              4 LOAD_FAST                0 (seconds_per_day)
-              6 LOAD_CONST               2 (365)
-              8 BINARY_MULTIPLY
-             10 RETURN_VALUE
+              0 BUILD_LIST               0
+              2 STORE_FAST               0 (L)
+              4 LOAD_GLOBAL              0 (range)
+              6 LOAD_CONST               1 (1)
+              8 LOAD_CONST               2 (1000)
+             10 CALL_FUNCTION            2
+             12 GET_ITER
+             14 FOR_ITER                13 (to 42)
+             16 STORE_FAST               1 (i)
+             18 LOAD_FAST                1 (i)
+             20 LOAD_CONST               3 (3)
+             22 BINARY_MODULO
+             24 LOAD_CONST               4 (0)
+             26 COMPARE_OP               2 (==)
+             28 POP_JUMP_IF_FALSE       20 (to 40)
+             30 LOAD_FAST                0 (L)
+             32 LOAD_METHOD              1 (append)
+             34 LOAD_FAST                1 (i)
+             36 CALL_METHOD              1
+             38 POP_TOP
+             40 JUMP_ABSOLUTE            7 (to 14)
+             42 LOAD_CONST               0 (None)
+             44 RETURN_VALUE
 
-              elapsed time: 0.000005007 [sec]
+elapsed time: 0.000077248 [sec]
 
-              0 LOAD_CONST               1 (31536000)
-              2 RETURN_VALUE            
+              0 LOAD_CONST               1 (<code object <listcomp> at 0x10b3294d0, file "/Users/iamstgt/How_CPython_Works/comparison.py", line 25>)
+              2 LOAD_CONST               2 ('multiplierByListComprehension.<locals>.<listcomp>')
+              4 MAKE_FUNCTION            0
+              6 LOAD_GLOBAL              0 (range)
+              8 LOAD_CONST               3 (1)
+             10 LOAD_CONST               4 (1000)
+             12 CALL_FUNCTION            2
+             14 GET_ITER
+             16 CALL_FUNCTION            1
+             18 STORE_FAST               0 (L)
+             20 LOAD_CONST               0 (None)
+             22 RETURN_VALUE
+Disassembly of <code object <listcomp> at 0x10b3294d0, file "/Users/iamstgt/How_CPython_Works/comparison.py", line 25>:
+              0 BUILD_LIST               0
+              2 LOAD_FAST                0 (.0)
+              4 FOR_ITER                10 (to 26)
+              6 STORE_FAST               1 (i)
+              8 LOAD_FAST                1 (i)
+             10 LOAD_CONST               0 (3)
+             12 BINARY_MODULO
+             14 LOAD_CONST               1 (0)
+             16 COMPARE_OP               2 (==)
+             18 POP_JUMP_IF_FALSE        2 (to 4)
+             20 LOAD_FAST                1 (i)
+             22 LIST_APPEND              2
+             24 JUMP_ABSOLUTE            2 (to 4)
+             26 RETURN_VALUE
 
-              elapsed time: 0.000002861 [sec]
+elapsed time: 0.000056982 [sec]
 ```
 </details>
 <br>
-As you can see, local names are faster than global ones. Wanna try your own code?
+As you can see, a list comprehension is faster than using an append method. Wanna try your own code?

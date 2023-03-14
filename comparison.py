@@ -14,25 +14,26 @@ def toc(tag="elapsed time"):
         print("tic has not been called")
 
 
-#  Local names are faster thn global ones.
-def yearByLocalName():
-    seconds_per_day = 86400
-    return seconds_per_day * 365
+# List comprehension is faster than using append method.
+def multiplier():
+    L = []
+    for i in range (1, 1000):
+        if i%3 == 0:
+            L.append (i)
 
-
-def yearByGlobalName():
-    return 86400 * 365
+def multiplierByListComprehension():
+    L = [i for i in range (1, 1000) if i%3 == 0]
 
 
 def main():
-    dis.dis(yearByLocalName)
+    dis.dis(multiplier)
     tic()
-    yearByLocalName()
+    multiplier()
     print()
     toc()
-    dis.dis(yearByGlobalName)
+    dis.dis(multiplierByListComprehension)
     tic()
-    yearByGlobalName()
+    multiplierByListComprehension()
     print()
     toc()
 
