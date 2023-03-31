@@ -1,4 +1,5 @@
 # How-Cpython-Works
+This aims to help Python developers gain a deeper understanding of the inner workings of CPython, which can aid in writing more efficient and optimized Python code.
 
 ## 0. Define an evaluand
 We're going to define the function printing out "Hello, world!" and set it to an evaluand for the sake of simplicity.
