@@ -72,8 +72,11 @@ Bytecode is computer object code that an interpreter converts into binary machin
 <br>
 
 ## 4. Interpretation and execution by PVM
-Bytecode is interpreted and executed by PVM.
-If you want to know how interpretation performs, look through <a href="https://github.com/python/cpython/blob/main/Python/ceval.c">ceval.c</a>. During a Python function call, Python will call an evaluating C function to interpret that function's code, according to <a href="https://docs.python.org/ja/3.11/whatsnew/3.11.html#inlined-python-function-calls">the official documentation</a>.
+The bytecode is loaded into memory and executed by the Python Virtual Machine (PVM). During this process, the interpreter dynamically loads any required modules and resolves any dependencies between them. Once all the necessary modules have been loaded and linked, the interpreter creates an executable program that contains all the necessary bytecode.
+
+When the program is executed, the PVM reads the compiled bytecode instructions from the executable program and executes them one by one in the order they were defined in the source code. The executable program serves as a container for the bytecode instructions and the necessary resources for the program to run, but it is not directly executed by the interpreter.
+
+If you want to learn more about how Python's interpretation process works, you can take a look at <a href="https://github.com/python/cpython/blob/main/Python/ceval.c">ceval.c</a>. This file contains the C code that implements the Python interpreter's evaluation loop. During a Python function call, the interpreter calls the appropriate evaluation function to interpret that function's code, according to <a href="https://docs.python.org/ja/3.11/whatsnew/3.11.html#inlined-python-function-calls">the official documentation</a>.
 
 
 ## Your Python code runs fast?
