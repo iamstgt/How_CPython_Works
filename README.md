@@ -7,7 +7,7 @@ We're going to define the function printing out "Hello, world!" and set it to an
 ## 1. Lexical Analysys
 Lexical analysis is the first phase in the compiler designing which groups a stream of letters or sounds into sets of units that represent meaningful syntax.
 ```
-❯ python lexical_analysis.py
+python lexical_analysis.py
 ```
 <details><summary>Output</summary>
 
@@ -26,7 +26,7 @@ TokenInfo(type=0 (ENDMARKER), string='', start=(2, 0), end=(2, 0), line='')]
 ## 2. Syntax Analysis
 Syntax analysis is the second phase in compiler designing in which the given input string is checked for the confirmation of rules and structure of the formal grammar.
 ```
-❯ python syntax_analysis_readable.py
+python syntax_analysis_readable.py
 ```
 <details><summary>Output</summary>
 
@@ -43,9 +43,9 @@ Syntax analysis is the second phase in compiler designing in which the given inp
 If you want it to be visualized, you can try the following.
 
 ```
-❯ brew install graphviz
-❯ pip install graphviz
-❯ python syntax_analysis_visualizable.py
+brew install graphviz
+pip install graphviz
+python syntax_analysis_visualizable.py
 ```
 You'll see ast.png saved.
 
@@ -56,7 +56,7 @@ You'll see ast.png saved.
 ## 3. Bytecode
 Bytecode is computer object code that an interpreter converts into binary machine code which is created based on the result of syntax analysis.
 ```
-❯ python bytecode.py
+python bytecode.py
 ```
 <details><summary>Output</summary>
 
@@ -93,7 +93,7 @@ def multiplierByListComprehension():
 ```
 
 ```
-❯ python comparison.py
+python comparison.py
 ```
 <details><summary>Output</summary>
 
