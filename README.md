@@ -79,8 +79,8 @@ When the program is executed, the PVM reads the compiled bytecode instructions f
 If you want to learn more about how Python's interpretation process works, you can take a look at <a href="https://github.com/python/cpython/blob/main/Python/ceval.c">ceval.c</a>. This file contains the C code that implements the Python interpreter's evaluation loop. During a Python function call, the interpreter calls the appropriate evaluation function to interpret that function's code, according to <a href="https://docs.python.org/ja/3.11/whatsnew/3.11.html#inlined-python-function-calls">the official documentation</a>.
 
 
-## Your Python code runs fast?
-Bytecode helps think about an effect on runtime. In this case, we compare two functions creating the list that contains multiples of 3 between 1 and 1000. 
+## Your Python program runs fast?
+The bytecode can provide some insight into the runtime behavior of a Python program. In this case, we compare two functions creating the list that contains multiples of 3 between 1 and 1000. 
 ```
 def multiplier():
     list = []
@@ -156,4 +156,4 @@ elapsed time: 0.000056982 [sec]
 ```
 </details>
 <br>
-As you can see, a list comprehension is faster than using an append method. Wanna try your own code?
+As you can see, a list comprehension is faster than using an append method. keep in mind that bytecode is just one piece of the puzzle, and there are many other factors that can affect a program's performance and behavior at runtime.
