@@ -1,5 +1,5 @@
 # How-Cpython-Works
-This aims to help Python developers gain a deeper understanding of the inner workings of CPython, which can aid in writing more efficient and optimized Python code.
+This aims to help Python developers gain a deeper understanding of the inner workings of CPython, which can aid in writing more efficient and optimized Python code. This focuses solely on CPython and doesn't cover other Python implementations such as <a href="https://www.pypy.org/">PyPy</a>, <a href="https://www.jython.org/">Jython</a>, <a href="https://ironpython.net/">IronPython</a>, and so on.
 
 ## 0. Define an evaluand
 We're going to define the function printing out "Hello, world!" and set it to an evaluand for the sake of simplicity.
@@ -156,4 +156,4 @@ elapsed time: 0.000056982 [sec]
 ```
 </details>
 <br>
-As you can see, a list comprehension is faster than using an append method. keep in mind that bytecode is just one piece of the puzzle, and there are many other factors that can affect a program's performance and behavior at runtime.
+As you can see, a list comprehension is faster than using an append method. Keep in mind that bytecode is just one piece of the puzzle, and there are many other factors that can affect a program's performance and behavior at runtime.
